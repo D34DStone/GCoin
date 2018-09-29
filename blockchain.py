@@ -39,6 +39,16 @@ class Blockchain():
         return hash[-difficult:] == "0" * difficult
 
 
+    @classmethod
+    def check_if_chain_valid(cls, chain, pow_difficult):
+        for i in range(1, len(chain) - 1):
+            if chain[i].previous_hash != Blockchain.hash_block(chain[i - 1]):
+                return False
+
+            if not Blockchain.proof_of_work(chain[i - 1].pow, chain[i].pow, pow_difficult):  
+                return False
+
+
     def __init__(self):
         self.chain.append(Blockchain.create_block(
             id=0,
