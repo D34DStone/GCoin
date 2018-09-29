@@ -40,7 +40,8 @@ def mine_handle():
 
     blockchain_server.make_transactions(reward_transaction)
     new_block = blockchain_server.new_block(pow=int_to_sha256(counter))
-    msg = ("Mined a new block after {} hashes!\nhash: {}\npow: {}\ntransactions: {}\n".format(
+    msg = ("Mined a new block after {} hashes!\nid: {}\nhash: {}\npow: {}\ntransactions: {}\n".format(
+            new_block.get("id"),
             counter - counter_point,
             Blockchain.hash_block(new_block),
             new_block.get("pow"),
